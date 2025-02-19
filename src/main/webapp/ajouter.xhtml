@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">  <!-- Namespace ajouté ici -->
+    <h:head>
+        <title>Ajouter un Lieu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                background-color: #f4f4f4;
+                padding: 50px;
+            }
+
+            .container {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                display: inline-block;
+                width: 50%;
+                text-align: left;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #007BFF;
+                color: white;
+            }
+
+            .styled-button {
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+            .styled-button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h1>Ajouter un Lieu</h1>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel for="nom" value="Nom:"/>
+                    <h:inputText id="nom" value="#{lieuController.lieu.nom}" required="true"/>
+                    
+                    <h:outputLabel for="description" value="Description:"/>
+                    <h:inputText id="description" value="#{lieuController.lieu.description}" required="true"/>
+                    
+                    <h:outputLabel for="latitude" value="Latitude:"/>
+                    <h:inputText id="latitude" value="#{lieuController.lieu.latitude}" required="true"/>
+                    
+                    <h:outputLabel for="longitude" value="Longitude:"/>
+                    <h:inputText id="longitude" value="#{lieuController.lieu.longitude}" required="true"/>
+                </h:panelGrid>
+                <h:commandButton value="Ajouter" action="#{lieuController.ajouterLieu()}" styleClass="styled-button"/>
+            </h:form>
+
+            <h:dataTable value="#{lieuController.lieux}" var="lieu" border="1">
+                <h:column>
+                    <f:facet name="header">Nom</f:facet>
+                    #{lieu.nom}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    #{lieu.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Latitude</f:facet>
+                    #{lieu.latitude}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Longitude</f:facet>
+                    #{lieu.longitude}
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>
